@@ -59,34 +59,41 @@ public class DBHandler {
 //        }
 //        return list;
 //    }
-    
-    public static boolean logIn(String user, String pass){
+
+    public static int logIn(String user, String pass){
         try{
-            System.out.println(user + "," + pass);
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT usuario, password FROM usuarios where usuario= '"+user+"'");
+            ResultSet results = statement.executeQuery("SELECT usuario, password, cambioPass FROM usuarios where usuario= '"+user+"'");
             results.next();
-            //while (results.next()) {
                 String usr=results.getString(1);
                 String password=results.getString(2);
-                //System.out.println(results.getString(0));
-                System.out.println(results.getString(1));
-                System.out.println(results.getString(2));
-                //System.out.println(results.getString(3));
+                int cambio = results.getInt(3);
                 if(usr.equals(user) && pass.equals(password)){
-                    return true;
+                    if(cambio == 0){
+                        //no ha cambiado su password
+                        return 2;
+                    }
+                    else //ya cambio su password
+                        return 1;
                 }
                 else{
-                    return false;
+                    //no se encontro
+                    return 0;
                 }
-            //}
         }
         catch (SQLException ex){
             Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return 0;
     }
-    
-   
+    public static void cambio(String user, String pass){
+        try{
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE usuarios SET password = '"+pass+"', cambioPass = "+1+" WHERE usuario = '"+user+"'");
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }
