@@ -7,6 +7,8 @@ package juego;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +50,9 @@ public class Server extends HttpServlet {
                 request.setAttribute("error", "Usuario o password incorrecto");
             }
         }
+        ServletContext sc = this.getServletContext();
+        RequestDispatcher rd = sc.getRequestDispatcher(url);
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

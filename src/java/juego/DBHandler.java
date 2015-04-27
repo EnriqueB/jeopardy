@@ -19,7 +19,6 @@ public class DBHandler {
 
     public DBHandler() {
         try {
-          
             connection = DriverManager.getConnection("jdbc:mysql://localhost/jeopardy", "root", "");
 
         } catch (Exception e) {
@@ -65,7 +64,7 @@ public class DBHandler {
         try{
             System.out.println(user + "," + pass);
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT user, password FROM usuarios where user= '"+user+"'");
+            ResultSet results = statement.executeQuery("SELECT usuario, password FROM usuarios where usuario= '"+user+"'");
             results.next();
             //while (results.next()) {
                 String usr=results.getString(1);
