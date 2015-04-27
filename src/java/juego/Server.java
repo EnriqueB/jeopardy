@@ -74,14 +74,14 @@ public class Server extends HttpServlet {
                 request.setAttribute("error", ""); 
             }
         }
-        if(op.equals("logout")) {
+        else if(op.equals("logout")) {
             session.invalidate(); 
-            response.sendRedirect("login.jsp");
-        } else {
-            ServletContext sc = this.getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher(url);
-            rd.forward(request, response);
+            url="/login.jsp";
         }
+        ServletContext sc = this.getServletContext();
+        RequestDispatcher rd = sc.getRequestDispatcher(url);
+        rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
