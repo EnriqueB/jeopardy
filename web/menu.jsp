@@ -20,8 +20,8 @@
         <h1>Hello World!</h1>
         <ul>
             <li><a href ="Server?operacion=Jugar">Jugar</a></li>
-            <li><a href ="Server?operacion=Agregar">Agregar jugadores</a></li>
-            <li><a href ="Server?operacion=Preguntas">Agregar y modificar preguntas</a></li>  
+            <li><a href ="Server?operacion=Agregar">Agregar Jugadores</a></li>
+            <li><a href ="Server?operacion=ControlPanel">Panel de Control (Preguntas)</a></li>  
         </ul>
         <a href="Server?operacion=logout">
             Logout

@@ -50,6 +50,8 @@ public class Server extends HttpServlet {
                 url="/login.jsp";
                 request.setAttribute("error", "Usuario o password incorrecto");
             }
+        } else if(op.equals("ControlPanel")) {
+            url="/controlpanel.jsp";
         } 
         if(op.equals("logout")) {
             session.invalidate(); 
