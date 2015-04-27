@@ -39,21 +39,46 @@ public class Server extends HttpServlet {
         HttpSession session = request.getSession();
         
         if(op.equals("login")){
-            Boolean exists = DBHandler.logIn(request.getParameter("user"), request.getParameter("pass"));
-            //System.out.println(request.getParameter("user")+", "+ request.getParameter("pass"));
-            if(exists){
+            //revisar si el usuario ha cambiado su password
+            int exists = DBHandler.logIn(request.getParameter("user"), request.getParameter("pass"));
+            if(exists == 1){
                 url="/menu.jsp";
                 session.setAttribute("usuario", request.getParameter("user"));
-                request.setAttribute("error", "");
+                request.setAttribute("error", ""); 
+            }
+            else if (exists == 2){
+                url="/cambio.jsp";
+                session.setAttribute("usuario", request.getParameter("user"));
+                request.setAttribute("error", ""); 
             }
             else {
                 url="/login.jsp";
                 request.setAttribute("error", "Usuario o password incorrecto");
             }
+<<<<<<< HEAD
         } else if(op.equals("ControlPanel")) {
             url="/controlpanel.jsp";
         } 
         if(op.equals("logout")) {
+=======
+        }
+        else if (op.equals("cambioPass")){
+            String passVieja = request.getParameter("passV");
+            String passNueva = request.getParameter("passN");
+            String passNueva2 = request.getParameter("passN2");
+            //revisar que las passwords nuevas concuerden
+            if(!passNueva.equals(passNueva2)){
+                url="/cambio.jsp";
+                request.setAttribute("error", "Passwords no concuerdan");
+            }
+            else{
+                DBHandler.cambio((String)session.getAttribute("usuario"), passNueva);
+                url="/menu.jsp";
+                request.setAttribute("error", ""); 
+            }
+        }
+        else if(op.equals("logout")) {
+>>>>>>> origin/master
             session.invalidate(); 
             response.sendRedirect("login.jsp");
         } else {
@@ -61,6 +86,8 @@ public class Server extends HttpServlet {
             RequestDispatcher rd = sc.getRequestDispatcher(url);
             rd.forward(request, response);
         }
+        ServletContext sc = this.getServletContext();
+        RequestDispatcher rd = sc.getRequestDispatcher(url);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
