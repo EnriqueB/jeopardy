@@ -20,7 +20,7 @@
         %>
         <%= error %>
         <%}%>
-        <form action="server" method="POST">
+        <form action="Server" method="POST">
             <input type="hidden" name ="operacion" value ="login">
             Usuario:
             <input type="text" name="user"> <br><br>

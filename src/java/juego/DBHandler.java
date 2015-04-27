@@ -63,7 +63,7 @@ public class DBHandler {
     
     public static boolean logIn(String user, String pass){
         try{
-            //System.out.println(user + "," + pass);
+            System.out.println(user + "," + pass);
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery("SELECT user, password FROM usuarios where user= '"+user+"'");
             results.next();
