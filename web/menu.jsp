@@ -12,10 +12,19 @@
         <title>Menu</title>
     </head>
     <body>
+        <% String user = (String) session.getAttribute("usuario");
+            if (user == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %>
         <h1>Hello World!</h1>
-        <a href ="Server?operacion=Jugar">Jugar</a>
-        <a href ="Server?operacion=Agregar">Agregar jugadores</a>
-        <a href ="Server?operacion=Preguntas">Agregar y modificar preguntas</a>
-        
+        <ul>
+            <li><a href ="Server?operacion=Jugar">Jugar</a></li>
+            <li><a href ="Server?operacion=Agregar">Agregar jugadores</a></li>
+            <li><a href ="Server?operacion=Preguntas">Agregar y modificar preguntas</a></li>  
+        </ul>
+        <a href="Server?operacion=logout">
+            Logout
+        </a>
     </body>
 </html>
