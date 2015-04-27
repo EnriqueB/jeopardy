@@ -10,15 +10,23 @@ package juego;
  * @author Enrique
  */
 public class Geografia {
-    String pista, categoria;
+    String pista, categoria, respuesta;
     int valor;
 
-    public Geografia(String pista, String categoria, int valor) {
+    public Geografia(String pista, String categoria, String respuesta, int valor) {
         this.pista = pista;
         this.valor = valor;
     }
 
     public Geografia() {
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
 
     public String getPista() {

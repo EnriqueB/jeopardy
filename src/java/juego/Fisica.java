@@ -10,19 +10,27 @@ package juego;
  * @author Enrique
  */
 public class Fisica {
-    String pista, categoria;
+    String pista, categoria, respuesta;
     int valor;
 
     public Fisica() {
     }
 
-    public Fisica(String pista, String categoria,  int valor) {
+    public Fisica(String pista, String categoria, String respuesta, int valor) {
         this.pista = pista;
         this.valor = valor;
     }
 
     public String getPista() {
         return pista;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
 
     public void setPista(String pista) {

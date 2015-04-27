@@ -10,15 +10,23 @@ package juego;
  * @author Enrique
  */
 public class Mate {
-    String pista, categoria;
+    String pista, categoria, respuesta;
     int valor;
 
     public Mate() {
     }
 
-    public Mate(String pista, String categoria, int valor) {
+    public Mate(String pista, String categoria, String respuesta, int valor) {
         this.pista = pista;
         this.valor = valor;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
 
     public String getPista() {

@@ -11,12 +11,13 @@ package juego;
  */
 public class Redes {
     String pista, categoria;
+    private String respuesta;
     int valor;
 
     public Redes() {
     }
 
-    public Redes(String pista, String categoria, int valor) {
+    public Redes(String pista, String categoria, String respuesta, int valor) {
         this.pista = pista;
         this.valor = valor;
     }
@@ -43,6 +44,14 @@ public class Redes {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
 
 }
