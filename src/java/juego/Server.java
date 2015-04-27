@@ -55,13 +55,10 @@ public class Server extends HttpServlet {
                 url="/login.jsp";
                 request.setAttribute("error", "Usuario o password incorrecto");
             }
-<<<<<<< HEAD
-        } else if(op.equals("ControlPanel")) {
+        } 
+        else if(op.equals("ControlPanel")) {
             url="/controlpanel.jsp";
         } 
-        if(op.equals("logout")) {
-=======
-        }
         else if (op.equals("cambioPass")){
             String passVieja = request.getParameter("passV");
             String passNueva = request.getParameter("passN");
@@ -77,8 +74,7 @@ public class Server extends HttpServlet {
                 request.setAttribute("error", ""); 
             }
         }
-        else if(op.equals("logout")) {
->>>>>>> origin/master
+        if(op.equals("logout")) {
             session.invalidate(); 
             response.sendRedirect("login.jsp");
         } else {
@@ -86,8 +82,6 @@ public class Server extends HttpServlet {
             RequestDispatcher rd = sc.getRequestDispatcher(url);
             rd.forward(request, response);
         }
-        ServletContext sc = this.getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher(url);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
