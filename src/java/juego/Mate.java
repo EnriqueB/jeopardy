@@ -10,13 +10,13 @@ package juego;
  * @author Enrique
  */
 public class Mate {
-    String pista;
+    String pista, categoria;
     int valor;
 
     public Mate() {
     }
 
-    public Mate(String pista, int valor) {
+    public Mate(String pista, String categoria, int valor) {
         this.pista = pista;
         this.valor = valor;
     }
@@ -35,6 +35,14 @@ public class Mate {
 
     public void setValor(int valor) {
         this.valor = valor;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
 }

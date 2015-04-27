@@ -10,13 +10,13 @@ package juego;
  * @author Enrique
  */
 public class Fisica {
-    String pista;
+    String pista, categoria;
     int valor;
 
     public Fisica() {
     }
 
-    public Fisica(String pista, int valor) {
+    public Fisica(String pista, String categoria,  int valor) {
         this.pista = pista;
         this.valor = valor;
     }
@@ -35,6 +35,14 @@ public class Fisica {
 
     public void setValor(int valor) {
         this.valor = valor;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
 }

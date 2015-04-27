@@ -10,10 +10,10 @@ package juego;
  * @author Enrique
  */
 public class Geografia {
-    String pista;
+    String pista, categoria;
     int valor;
 
-    public Geografia(String pista, int valor) {
+    public Geografia(String pista, String categoria, int valor) {
         this.pista = pista;
         this.valor = valor;
     }
@@ -35,6 +35,14 @@ public class Geografia {
 
     public void setValor(int valor) {
         this.valor = valor;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
     
 }
