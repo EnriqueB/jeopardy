@@ -55,12 +55,10 @@ public class Server extends HttpServlet {
                 url="/login.jsp";
                 request.setAttribute("error", "Usuario o password incorrecto");
             }
-<<<<<<< HEAD
         } else if(op.equals("ControlPanel")) {
             url="/controlpanel.jsp";
         } 
         if(op.equals("logout")) {
-=======
         }
         else if (op.equals("cambioPass")){
             String passVieja = request.getParameter("passV");
@@ -78,7 +76,6 @@ public class Server extends HttpServlet {
             }
         }
         else if(op.equals("logout")) {
->>>>>>> origin/master
             session.invalidate(); 
             response.sendRedirect("login.jsp");
         } else {
