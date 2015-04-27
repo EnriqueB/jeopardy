@@ -9,24 +9,18 @@ package juego;
  *
  * @author Enrique
  */
-public class Mate {
+public class Pregunta {
     String pista, categoria, respuesta;
     int valor;
 
-    public Mate() {
+    public Pregunta() {
     }
 
-    public Mate(String pista, String categoria, String respuesta, int valor) {
+    public Pregunta(String pista, String categoria, String respuesta, int valor) {
         this.pista = pista;
-        this.valor = valor;
-    }
-
-    public String getRespuesta() {
-        return respuesta;
-    }
-
-    public void setRespuesta(String respuesta) {
+        this.categoria = categoria;
         this.respuesta = respuesta;
+        this.valor = valor;
     }
 
     public String getPista() {
@@ -37,14 +31,6 @@ public class Mate {
         this.pista = pista;
     }
 
-    public int getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-
     public String getCategoria() {
         return categoria;
     }
@@ -53,4 +39,20 @@ public class Mate {
         this.categoria = categoria;
     }
 
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+    
 }
