@@ -130,7 +130,7 @@ public class Server extends HttpServlet {
                 }
                 session.setAttribute("jugadores", jugadores);
                 session.setAttribute("cantidad", cantJugadores);
-                url="/juego.jsp";
+                url="/elegirTemas.jsp";
             }
         }
         else if(op.equals("logout")) {
