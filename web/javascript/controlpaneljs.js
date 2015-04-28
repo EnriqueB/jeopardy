@@ -134,7 +134,24 @@ function borrarCategoria() {
 
 
 function editarPista() {
+    var form = document.getElementById("formPistaM");
+    var value = document.getElementById("selectCategoria");
+    var categoria = value.options[value.selectedIndex].text;
+    value = document.getElementById("selectMateria");
+    var tema = value.options[value.selectedIndex].text; 
+    var pista = form.pista.value;
+    var puntuacion = form.valor.value;
+    var respuesta = form.respuesta.value;
     
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            alert("Pista modificada exitosamente");
+            location.reload();
+        }
+    }
+    xmlhttp.open("GET", "ServerPanel?op=editarPista&tema="+tema+"&categoria="+categoria+"&pista="+pista+"&puntuacion="+puntuacion+"&respuesta="+respuesta, true);
+    xmlhttp.send();
 }
 
 
@@ -177,5 +194,19 @@ function validarPista() {
         alert("Favor de llenar los campos.");
     } else {
         document.getElementById("formPista").submit();
+    }
+}
+
+function agregarPistaShowM() {
+    document.getElementById('popupPistaM').style.display = "block";
+}
+function agregarPistaHideM() {
+     document.getElementById('popupPistaM').style.display = "none";
+}
+function validarPistaM() {
+    if(document.getElementById("pistaM").value == "") {
+        alert("Favor de llenar los campos.");
+    } else {
+        document.getElementById("formPistaM").submit();
     }
 }

@@ -119,6 +119,12 @@ public class ServerPanel extends HttpServlet {
             String value = request.getParameter("value");
             DBHandler.borrarCategoria(value);
             out.println(respuesta);
+        } else if(op.equals("editarPista")) {
+            String pista = request.getParameter("pista");
+            String respuestas = request.getParameter("respuesta");
+            String puntuacion = request.getParameter("puntuacion");
+            DBHandler.editarPista(pista, respuestas, puntuacion);
+            out.println(respuesta);
         }
 //        processRequest(request, response);
     }

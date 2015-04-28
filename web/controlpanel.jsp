@@ -18,7 +18,7 @@
                 float:left;
                 width:20%;
             }
-            #popupTema, #popupCategoria, #popupPista {
+            #popupTema, #popupCategoria, #popupPista, #popupPistaM {
                 display:none;
                 position:absolute;
                 top:300px;
@@ -87,7 +87,7 @@
                         <td><button type="button" onclick="agregarPistaShow()">Agregar pista</button></td>
                     </tr>
                     <tr>
-                        <td><button type="button" onclick="editarPista()">Editar pista</button></td>
+                        <td><button type="button" onclick="agregarPistaShowM()">Editar pista</button></td>
                     </tr>
                     <tr>
                         <td><button type="button" onclick="borrarPista()">Borrar pista</button></td>
@@ -120,8 +120,8 @@
                 <a href="javascript:agregarCategoriaHide()" id="cancel">Cancelar</a>
             </form>
         </div>
-        <!-- Popup Div temas termina -->
-        <!-- Popup Div para agregar Categorias -->
+        <!-- Popup Div categorias termina -->
+        <!-- Popup Div para agregar Pistas -->
         <div id="popupPista">
             <form action="javascript:agregarPista()" id="formPista" method="post" name="form">
                 <h2>Agregar Pista</h2>
@@ -133,7 +133,19 @@
                 <a href="javascript:agregarPistaHide()" id="cancel">Cancelar</a>
             </form>
         </div>
-        <!-- Popup Div temas termina -->
+        <!-- Popup Div Pistas termina -->
+        <div id="popupPistaM">
+            <form action="javascript:editarPista()" id="formPistaM" method="post" name="form">
+                <h2>Modificar Pista</h2>
+                <input id="pistaM" name="pista" type="text">
+                <input id="respuesta" name="respuesta" type="text">
+                <input id="valor" name="valor" type="text">
+                <br/>
+                <a href="javascript:validarPistaM()" id="submit">Modificar</a>
+                <a href="javascript:agregarPistaHideM()" id="cancel">Cancelar</a>
+            </form>
+        </div>
+        <!-- Popup Div Pistas termina -->
         <script src="javascript/controlpaneljs.js">
         </script>
     </body>
