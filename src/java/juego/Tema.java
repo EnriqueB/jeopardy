@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Tema {
     ArrayList categorias;
+    String nombre;
 
     public Tema() {
         categorias = new ArrayList();
@@ -24,6 +25,14 @@ public class Tema {
 
     public ArrayList getCategorias() {
         return categorias;
+    }
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
 }

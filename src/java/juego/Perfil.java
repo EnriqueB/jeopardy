@@ -22,4 +22,18 @@ public class Perfil {
         temas.add(tema);
     }
     
+    public ArrayList getTemas() {
+        return temas;
+    }
+    
+    public void borrarTema(String tema){
+        for(int i=0; i<temas.size(); ++i){
+            Tema t = (Tema)temas.get(i);
+            if(t.nombre.equals(tema)){
+                temas.remove(i);
+                break;
+            }
+        }
+    }
+
 }
