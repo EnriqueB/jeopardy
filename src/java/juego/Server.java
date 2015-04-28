@@ -90,10 +90,48 @@ public class Server extends HttpServlet {
                 url="/menu.jsp";
             }
         }
-        else if(op.equals("jugar")){
-            url="/elegirJugadores";
+        else if(op.equals("Jugar")){
+            url="/elegirJugadores.jsp";
             ArrayList jugadores = DBHandler.listaJugadores();
             session.setAttribute("jugadoresLista", jugadores);
+        }
+        else if(op.equals("empezarJuego")){
+            String jugador1 = request.getParameter("jugador1");
+            String jugador2 = request.getParameter("jugador2");
+            String jugador3 = request.getParameter("jugador3");
+            String jugador4 = request.getParameter("jugador4");
+            if(jugador1.equals("") && jugador2.equals("") && jugador3.equals("") && jugador4.equals("")){
+                request.setAttribute("error", "Por favor seleccione al menos un jugador");
+                url = "/elegirJugadores.jsp";
+            }
+            else{
+                //almacenar en la sesion los jugadores que si existen
+                ArrayList jugadores = new ArrayList();
+                int cantJugadores=0;
+                if(!jugador1.equals("")){
+                    cantJugadores++;
+                    Jugador jug1 = new Jugador(jugador1, 0, 0);
+                    jugadores.add(jug1);
+                }
+                if(!jugador2.equals("")){
+                    cantJugadores++;
+                    Jugador jug2 = new Jugador(jugador2, 0, 0);
+                    jugadores.add(jug2);
+                }
+                if(!jugador3.equals("")){
+                    cantJugadores++;
+                    Jugador jug3 = new Jugador(jugador3, 0, 0);
+                    jugadores.add(jug3);
+                }
+                if(!jugador4.equals("")){
+                    cantJugadores++;
+                    Jugador jug4 = new Jugador(jugador4, 0, 0);
+                    jugadores.add(jug4);
+                }
+                session.setAttribute("jugadores", jugadores);
+                session.setAttribute("cantidad", cantJugadores);
+                url="/juego.jsp";
+            }
         }
         else if(op.equals("logout")) {
             session.invalidate(); 
