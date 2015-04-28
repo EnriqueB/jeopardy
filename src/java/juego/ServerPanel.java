@@ -49,13 +49,30 @@ public class ServerPanel extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+        
         String op = request.getParameter("op");
+        PrintWriter out = response.getWriter();
         String respuesta = "";
         if(op.equals("temas")) {
             ArrayList temas = DBHandler.getTemas();
             for(int i=0; i<temas.size(); i++) {
                 respuesta+="<option value='"+temas.get(i)+"'>"+temas.get(i)+"</option>";
+            }
+            out.println(respuesta);
+        }
+        else if(op.equals("categoria")) {
+            String tema = request.getParameter("value");
+            ArrayList categorias = DBHandler.getCategorias(tema);
+            for(int i=0; i<categorias.size(); i++) {
+                respuesta+="<option value='"+categorias.get(i)+"'>"+categorias.get(i)+"</option>";
+            }
+            out.println(respuesta);
+        }
+        else if(op.equals("pistas")) {
+            String categoria = request.getParameter("value");
+            ArrayList pistas = DBHandler.getPistas(categoria);
+            for(int i=0; i<pistas.size(); i++) {
+                respuesta+="<option value='"+pistas.get(i)+"'>"+pistas.get(i)+"</option>";
             }
             out.println(respuesta);
         }

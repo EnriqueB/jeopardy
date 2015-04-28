@@ -112,5 +112,40 @@ public class DBHandler {
         }
         return temas;
     }
+    
+    public static ArrayList getCategorias(String tema) {
+        ArrayList categorias = new ArrayList();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT DISTINCT categoria FROM preguntas WHERE tema = '"+tema+"'");
+            while(results.next()){
+                String categoria = results.getString(1);
+                categorias.add(categoria);
+            }
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return categorias;
+    }
+    
+    
+    public static ArrayList getPistas(String categoria) {
+        ArrayList categorias = new ArrayList();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT DISTINCT pista FROM preguntas WHERE categoria = '"+categoria+"'");
+            while(results.next()){
+                String pista = results.getString(1);
+                categorias.add(pista);
+            }
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return categorias;
+    }
 
 }
