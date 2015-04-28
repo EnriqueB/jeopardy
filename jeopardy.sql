@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
 -- Dumping data for table `categorias`
 --
 
-INSERT INTO `preguntas` (`id`, `tema`, `categoria`) VALUES
+INSERT INTO `categorias` (`id`, `tema`, `categoria`) VALUES
 (1, 'Fisica', 'Magnetismo'),
 (2, 'Geografia', 'Montañas');
 
