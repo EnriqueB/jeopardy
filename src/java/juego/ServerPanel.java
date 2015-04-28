@@ -7,19 +7,19 @@ package juego;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Enrique
+ * @author Fernando
  */
-public class Server extends HttpServlet {
+@WebServlet(name = "ServerPanel", urlPatterns = {"/ServerPanel"})
+public class ServerPanel extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,54 +33,8 @@ public class Server extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        String op = request.getParameter("operacion");
-        String url ="/inicio.jsp";
-        HttpSession session = request.getSession();
-        if(op.equals("login")){
-            //revisar si el usuario ha cambiado su password
-            int exists = DBHandler.logIn(request.getParameter("user"), request.getParameter("pass"));
-            if(exists == 1){
-                url="/menu.jsp";
-                session.setAttribute("usuario", request.getParameter("user"));
-                request.setAttribute("error", ""); 
-            }
-            else if (exists == 2){
-                url="/cambio.jsp";
-                session.setAttribute("usuario", request.getParameter("user"));
-                request.setAttribute("error", ""); 
-            }
-            else {
-                url="/login.jsp";
-                request.setAttribute("error", "Usuario o password incorrecto");
-            }
-        } 
-        else if(op.equals("ControlPanel")) {
-            url="/controlpanel.jsp";
-        } 
-        else if (op.equals("cambioPass")){
-            String passVieja = request.getParameter("passV");
-            String passNueva = request.getParameter("passN");
-            String passNueva2 = request.getParameter("passN2");
-            //revisar que las passwords nuevas concuerden
-            if(!passNueva.equals(passNueva2)){
-                url="/cambio.jsp";
-                request.setAttribute("error", "Passwords no concuerdan");
-            }
-            else{
-                DBHandler.cambio((String)session.getAttribute("usuario"), passNueva);
-                url="/menu.jsp";
-                request.setAttribute("error", ""); 
-            }
+        try (PrintWriter out = response.getWriter()) {
         }
-        else if(op.equals("logout")) {
-            session.invalidate(); 
-            url="/login.jsp";
-        }
-        ServletContext sc = this.getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher(url);
-        rd.forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -95,7 +49,17 @@ public class Server extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        String op = request.getParameter("op");
+        String respuesta = "";
+        if(op.equals("temas")) {
+            ArrayList temas = DBHandler.getTemas();
+            for(int i=0; i<temas.size(); i++) {
+                respuesta+="<option value='"+temas.get(i)+"'>"+temas.get(i)+"</option>";
+            }
+            out.println(respuesta);
+        }
+//        processRequest(request, response);
     }
 
     /**

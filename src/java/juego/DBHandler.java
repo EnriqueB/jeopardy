@@ -95,5 +95,22 @@ public class DBHandler {
             Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static ArrayList getTemas() {
+        ArrayList temas = new ArrayList();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT DISTINCT tema FROM preguntas");
+            while(results.next()){
+                String tema = results.getString(1);
+                temas.add(tema);
+            }
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return temas;
+    }
 
 }
