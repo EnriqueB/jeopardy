@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `temas` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `preguntas`
+-- Dumping data for table `temas`
 --
 
 INSERT INTO `temas` (`id`, `tema`) VALUES
@@ -66,7 +66,7 @@ INSERT INTO `temas` (`id`, `tema`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `preguntas`
+-- Table structure for table `categorias`
 --
 
 CREATE TABLE IF NOT EXISTS `categorias` (
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `preguntas`
+-- Dumping data for table `categorias`
 --
 
 INSERT INTO `preguntas` (`id`, `tema`, `categoria`) VALUES
