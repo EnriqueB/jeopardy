@@ -38,7 +38,6 @@ public class Server extends HttpServlet {
         String op = request.getParameter("operacion");
         String url ="/inicio.jsp";
         HttpSession session = request.getSession();
-        
         if(op.equals("login")){
             //revisar si el usuario ha cambiado su password
             int exists = DBHandler.logIn(request.getParameter("user"), request.getParameter("pass"));

@@ -4,9 +4,17 @@
         <servlet-name>Server</servlet-name>
         <servlet-class>juego.Server</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServerPanel</servlet-name>
+        <servlet-class>juego.ServerPanel</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Server</servlet-name>
         <url-pattern>/Server</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServerPanel</servlet-name>
+        <url-pattern>/ServerPanel</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
