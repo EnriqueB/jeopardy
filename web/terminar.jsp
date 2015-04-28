@@ -14,6 +14,11 @@
         <title>Fin</title>
     </head>
     <body>
+        <% String user = (String) session.getAttribute("usuario");
+            if (user == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %>
         <h1>Puntuaciones finales</h1><br>
         <%  ArrayList jugadores = (ArrayList)session.getAttribute("jugadores");
             int max=0;
