@@ -1,3 +1,5 @@
+var categoriaNum = 1;
+
 function mostrarTemas() {
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange=function() {
@@ -242,4 +244,13 @@ function validarCategoriaM() {
     } else {
         document.getElementById("formCategoriaM").submit();
     }
+}
+
+
+function agregarLista() {
+    var categoria = document.getElementById("selectCategoria");
+    var selectedCategoria = categoria.options[categoria.selectedIndex].text;
+    document.getElementById("detallePistas").innerHTML+="<li>"+selectedCategoria+"</li>";
+    document.getElementById("listaPistas").innerHTML+="<input type='hidden' value='"+selectedCategoria+"' name='categoria"+categoriaNum+"' />";
+    categoriaNum += 1;
 }
