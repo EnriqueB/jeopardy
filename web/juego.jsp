@@ -39,9 +39,9 @@
             ArrayList categoria3 = (ArrayList)listaCategorias.get(2);
             ArrayList categoria4 = (ArrayList)listaCategorias.get(3);
             String cat1 = ((Pregunta)categoria1.get(0)).getCategoria();
-            String cat2 = ((Pregunta)categoria1.get(1)).getCategoria();
-            String cat3 = ((Pregunta)categoria1.get(2)).getCategoria();
-            String cat4 = ((Pregunta)categoria1.get(3)).getCategoria();
+            String cat2 = ((Pregunta)categoria2.get(1)).getCategoria();
+            String cat3 = ((Pregunta)categoria3.get(2)).getCategoria();
+            String cat4 = ((Pregunta)categoria4.get(3)).getCategoria();
 
         %>
         <script type="text/javascript">
@@ -54,7 +54,7 @@
             <input type="hidden" name ="operacion" value ="eleccionPregunta">
             <input type="hidden" id="command" name="pista" value="">
             
-            <table>
+            <table  border="1">
                 <tr>
                     <th><%=cat1%></th>
                     <th><%=cat2%></th>
@@ -62,50 +62,65 @@
                     <th><%=cat4%></th>
                 </tr>
                 <tr>
-                    <%
-                        for(int i=0; i<categoria1.size(); ++i){
-                            Pregunta preg = (Pregunta)categoria1.get(i);
-                            %>
-                    <a href="javascript:submitFormWithValue('<%=preg.getPista()%>')"><%=preg.getValor()%></a>
-                    <%
-                        }
+                    <% Pregunta preg1 = (Pregunta)categoria1.get(0);
+                       Pregunta preg2 = (Pregunta)categoria2.get(0);
+                       Pregunta preg3 = (Pregunta)categoria3.get(0);
+                       Pregunta preg4 = (Pregunta)categoria4.get(0);
                     %>
+                    <td><a href="javascript:submitFormWithValue('<%=preg1.getPista()%>')"><%=preg1.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg2.getPista()%>')"><%=preg2.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg3.getPista()%>')"><%=preg3.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg4.getPista()%>')"><%=preg4.getValor()%></a></td>
                 </tr>
                 <tr>
-                    <%
-                        for(int i=0; i<categoria2.size(); ++i){
-                            Pregunta preg = (Pregunta)categoria1.get(i);
-                            %>
-                    <a href="javascript:submitFormWithValue('<%=preg.getPista()%>')"><%=preg.getValor()%></a>
-                    <%
-                        }
+                    <% preg1 = (Pregunta)categoria1.get(1);
+                       preg2 = (Pregunta)categoria2.get(1);
+                       preg3 = (Pregunta)categoria3.get(1);
+                       preg4 = (Pregunta)categoria4.get(1);
                     %>
+                    <td><a href="javascript:submitFormWithValue('<%=preg1.getPista()%>')"><%=preg1.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg2.getPista()%>')"><%=preg2.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg3.getPista()%>')"><%=preg3.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg4.getPista()%>')"><%=preg4.getValor()%></a></td>
                 </tr>
                 <tr>
-                    <%
-                        for(int i=0; i<categoria3.size(); ++i){
-                            Pregunta preg = (Pregunta)categoria1.get(i);
-                            %>
-                    <a href="javascript:submitFormWithValue('<%=preg.getPista()%>')"><%=preg.getValor()%></a>
-                    <%
-                        }
+                    <% preg1 = (Pregunta)categoria1.get(2);
+                       preg2 = (Pregunta)categoria2.get(2);
+                       preg3 = (Pregunta)categoria3.get(2);
+                       preg4 = (Pregunta)categoria4.get(2);
                     %>
+                    <td><a href="javascript:submitFormWithValue('<%=preg1.getPista()%>')"><%=preg1.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg2.getPista()%>')"><%=preg2.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg3.getPista()%>')"><%=preg3.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg4.getPista()%>')"><%=preg4.getValor()%></a></td>
                 </tr>
                 <tr>
-                    <%
-                        for(int i=0; i<categoria4.size(); ++i){
-                            Pregunta preg = (Pregunta)categoria1.get(i);
-                            %>
-                    <a href="javascript:submitFormWithValue('<%=preg.getPista()%>')"><%=preg.getValor()%></a>
-                    <%
-                        }
+                    <% preg1 = (Pregunta)categoria1.get(3);
+                       preg2 = (Pregunta)categoria2.get(3);
+                       preg3 = (Pregunta)categoria3.get(3);
+                       preg4 = (Pregunta)categoria4.get(3);
                     %>
+                    <td><a href="javascript:submitFormWithValue('<%=preg1.getPista()%>')"><%=preg1.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg2.getPista()%>')"><%=preg2.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg3.getPista()%>')"><%=preg3.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg4.getPista()%>')"><%=preg4.getValor()%></a></td>
+                </tr>
+                <tr>
+                    <% preg1 = (Pregunta)categoria1.get(4);
+                       preg2 = (Pregunta)categoria2.get(4);
+                       preg3 = (Pregunta)categoria3.get(4);
+                       preg4 = (Pregunta)categoria4.get(4);
+                    %>
+                    <td><a href="javascript:submitFormWithValue('<%=preg1.getPista()%>')"><%=preg1.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg2.getPista()%>')"><%=preg2.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg3.getPista()%>')"><%=preg3.getValor()%></a></td>
+                    <td><a href="javascript:submitFormWithValue('<%=preg4.getPista()%>')"><%=preg4.getValor()%></a></td>
                 </tr>
             </table>
         </form>
         <form action="Server" method="POST">
-            <input type="hidden" name ="operacion" value ="terminar">
-            <input type="submit" name="Terminar">
+            <input type="hidden" name ="operacion" value ="Terminar">
+            <input type="submit" name="Terminar" value = "Terminar">
         </form>
     </body>
 </html>

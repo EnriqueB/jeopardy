@@ -28,7 +28,7 @@
         %>
         <h1>Elegir Tema!</h1>
         <form action="Server" id="listaPistas" method="POST">
-            <input type="hidden" name ="operacion" value ="elegirTemas">
+            <input type="hidden" name ="operacion" value ="elegirCategorias">
             <input type="submit" value ="Jugar!">
         </form>
         <div class="container">

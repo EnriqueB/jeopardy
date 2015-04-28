@@ -26,7 +26,7 @@
         <form action="Server" method="POST">
             <input type="hidden" name ="operacion" value ="revisarRespuesta">
             <input type="hidden" name ="respCorrecta" value ="<%=preg.getRespuesta()%>">
-            <input type="hidden" name ="respCorrecta" value ="<%=preg.getValor()%>">
+            <input type="hidden" name ="valor" value ="<%=preg.getValor()%>">
             Respuesta: <input type="text" name ="resp">
             <br>
             <input type="submit" value ="responder">        

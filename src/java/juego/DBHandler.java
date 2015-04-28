@@ -116,6 +116,17 @@ public class DBHandler {
         return list;
     }
     
+    public static void actualizaJugador(String nombre, int Puntuacion){
+        try{
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE jugadores SET puntuacion = "+Puntuacion+" WHERE nombre = '"+nombre+"'");
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public static void agregaJugador(String nombre){
         try{
             Statement statement = connection.createStatement();
@@ -188,6 +199,50 @@ public class DBHandler {
         try {
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery("SELECT tema, categoria, pista, respuesta, puntuacion FROM preguntas WHERE categoria = '"+categoria+"' AND tema='"+tema+"' AND pista='"+pista+"'");
+            while(results.next()){
+                String temas = results.getString(1);
+                String categorias = results.getString(2);
+                String pistas = results.getString(3);
+                String respuesta = results.getString(4);
+                int puntuacion = results.getInt(5);
+                Pregunta preg = new Pregunta(pistas, categorias, temas, respuesta, puntuacion);
+                pregs.add(preg);
+            }
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pregs;
+    }
+    
+    public static Pregunta getPistaSola(String pista) {
+        Pregunta pregunta = new Pregunta();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT tema, categoria, pista, respuesta, puntuacion FROM preguntas WHERE pista='"+pista+"'");
+            while(results.next()){
+                String temas = results.getString(1);
+                String categorias = results.getString(2);
+                String pistas = results.getString(3);
+                String respuesta = results.getString(4);
+                int puntuacion = results.getInt(5);
+                Pregunta preg = new Pregunta(pistas, categorias, temas, respuesta, puntuacion);
+                return preg;
+            }
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pregunta;
+    }
+    
+     public static ArrayList getPistaCategoria(String categoria) {
+        ArrayList pregs = new ArrayList();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT tema, categoria, pista, respuesta, puntuacion FROM preguntas WHERE categoria = '"+categoria+"'");
             while(results.next()){
                 String temas = results.getString(1);
                 String categorias = results.getString(2);

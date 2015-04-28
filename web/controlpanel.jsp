@@ -103,7 +103,7 @@
                 </tbody>
             </table>
         </div>
-        <form action="/jeopardy/menu.jsp" id="returnButton">
+        <form action="/Jeopardy/menu.jsp" id="returnButton" method = "POST">
             <input type="submit" value="Regresar"/>
         </form>
         <!-- Popup Div para agregar Temas -->

@@ -134,6 +134,30 @@ public class Server extends HttpServlet {
                 url="/elegirTemas.jsp";
             }
         }
+        else if(op.equals("elegirCategorias")){
+            String cat1 = request.getParameter("categoria1");
+            String cat2 = request.getParameter("categoria2");
+            String cat3 = request.getParameter("categoria3");
+            String cat4 = request.getParameter("categoria4");
+            ArrayList categoria1 = DBHandler.getPistaCategoria(cat1);
+            ArrayList categoria2 = DBHandler.getPistaCategoria(cat2);
+            ArrayList categoria3 = DBHandler.getPistaCategoria(cat3);
+            ArrayList categoria4 = DBHandler.getPistaCategoria(cat4);
+            ArrayList perfil = new ArrayList();
+            perfil.add(categoria1);
+            perfil.add(categoria2);
+            perfil.add(categoria3);
+            perfil.add(categoria4);
+            session.setAttribute("perfil", perfil);
+            url="/juego.jsp";
+        }
+        else if(op.equals("eleccionPregunta")){
+            String pista = request.getParameter("pista");
+            Pregunta preg = DBHandler.getPistaSola(pista);
+            System.out.println(preg.getValor());
+            session.setAttribute("Pregunta", preg);
+            url="/pregunta.jsp";
+        }
         else if(op.equals("revisarRespuesta")){
             String respUsuario = request.getParameter("resp");
             String respCorrecta = request.getParameter("respCorrecta");
@@ -142,7 +166,9 @@ public class Server extends HttpServlet {
                 //Actualizar puntaje
                 ArrayList jugadores = (ArrayList)session.getAttribute("jugadores");
                 int turno = (int)session.getAttribute("turno")%(int)session.getAttribute("cantidad");
-                ((Jugador)jugadores.get(turno)).setPuntuacion(((Jugador)jugadores.get(turno)).getPuntuacion()+Integer.parseInt(request.getParameter("valor")));
+                int valor = Integer.parseInt(request.getParameter("valor"));
+                Jugador jugador = (Jugador)jugadores.get(turno);
+                jugador.setPuntuacion(jugador.getPuntuacion()+ valor);
                 session.setAttribute("turno", (int)session.getAttribute("turno")+1);
                 request.setAttribute("resultado", "Felicidades! La respuesta es correcta");
                 url="/juego.jsp";
@@ -156,6 +182,13 @@ public class Server extends HttpServlet {
         }
         else if(op.equals("Terminar")){
             //juego termino
+            //actualizar base de datos
+            ArrayList jugadores = (ArrayList)session.getAttribute("jugadores");
+            int cant = (int)session.getAttribute("cantidad");
+            for(int i=0; i<cant; ++i){
+                Jugador jugador = (Jugador)jugadores.get(i);
+                DBHandler.actualizaJugador(jugador.getNombre(), jugador.getPuntuacion());
+            }
             url="/terminar.jsp";
         }
         else if(op.equals("logout")) {

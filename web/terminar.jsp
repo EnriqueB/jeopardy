@@ -37,5 +37,9 @@
         <br>
         El ganador es:<br>
         <h2><%=((Jugador)jugadores.get(maxI)).getNombre()%>!!!!!</h2>
+        
+        <a href="Server?operacion=logout">
+            Logout
+        </a>
     </body>
 </html>
