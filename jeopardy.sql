@@ -39,6 +39,8 @@ CREATE TABLE IF NOT EXISTS `preguntas` (
 -- Dumping data for table `preguntas`
 --
 
+INSERT INTO `preguntas` (`id`, `tema`, `categoria`, `pista`, `respuesta`, `puntuacion`) 
+VALUES
 (3, 'Matematicas', 'Aritmetica', 'Sumatoria de los numeros del 1 al 5', '15', 100),
 (4, 'Matematicas', 'Aritmetica', 'El cuadrado de la diferencia entre 13 y 4', '81', 200),
 (5, 'Matematicas', 'Aritmetica', 'Cual es la mitad de 2 a la 6', '32', 300),
