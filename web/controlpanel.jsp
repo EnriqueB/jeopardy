@@ -18,11 +18,15 @@
                 float:left;
                 width:20%;
             }
-            #popupTema, #popupCategoria, #popupPista, #popupPistaM {
+            #popupTema, #popupCategoria, #popupPista, #popupPistaM, #popupCategoriaM {
                 display:none;
                 position:absolute;
                 top:300px;
                 left:50px;
+            }
+            #returnButton {
+                position:absolute;
+                top:400px;
             }
         </style>
     </head>
@@ -65,7 +69,7 @@
                         <td><button type="button" onclick="agregarCategoriaShow()">Agregar categoria</button></td>
                     </tr>
                     <tr>
-                        <td><button type="button" onclick="editarCategoria()">Editar categoria</button></td>
+                        <td><button type="button" onclick="agregarCategoriaShowM()">Editar categoria</button></td>
                     </tr>
                     <tr>
                         <td><button type="button" onclick="borrarCategoria()">Borrar categoria</button></td>
@@ -99,6 +103,9 @@
                 </tbody>
             </table>
         </div>
+        <form action="/jeopardy/menu.jsp" id="returnButton">
+            <input type="submit" value="Regresar"/>
+        </form>
         <!-- Popup Div para agregar Temas -->
         <div id="popupTema">
             <form action="javascript:agregarTema()" id="formTema" method="post" name="form">
@@ -146,6 +153,17 @@
             </form>
         </div>
         <!-- Popup Div Pistas termina -->
+        <!-- Popup Div Categoria termina -->
+        <div id="popupCategoriaM">
+            <form action="javascript:editarCategoria()" id="formCategoriaM" method="post" name="form">
+                <h2>Modificar Categoria</h2>
+                <input id="categoriaM" name="categoria" type="text">
+                <br/>
+                <a href="javascript:validarCategoriaM()" id="submit">Modificar</a>
+                <a href="javascript:agregarCategoriaHideM()" id="cancel">Cancelar</a>
+            </form>
+        </div>
+        <!-- Popup Div Categoria termina -->
         <script src="javascript/controlpaneljs.js">
         </script>
     </body>

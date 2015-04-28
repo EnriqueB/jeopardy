@@ -155,6 +155,24 @@ function editarPista() {
 }
 
 
+function editarCategoria() {
+    var form = document.getElementById("formCategoriaM");
+    var cat = document.getElementById("selectCategoria");
+    var value = cat.options[cat.selectedIndex].text;
+    var categoria = form.categoria.value;
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            alert("Categoria modificada exitosamente");
+            location.reload();
+        }
+    }
+    xmlhttp.open("GET", "ServerPanel?op=editarCategoria&value="+value+"&categoria="+categoria, true);
+    xmlhttp.send();
+}
+
+
+
 function agregarTemaShow() {
     document.getElementById('popupTema').style.display = "block";
 }
@@ -208,5 +226,20 @@ function validarPistaM() {
         alert("Favor de llenar los campos.");
     } else {
         document.getElementById("formPistaM").submit();
+    }
+}
+
+
+function agregarCategoriaShowM() {
+    document.getElementById('popupCategoriaM').style.display = "block";
+}
+function agregarCategoriaHideM() {
+     document.getElementById('popupCategoriaM').style.display = "none";
+}
+function validarCategoriaM() {
+    if(document.getElementById("categoriaM").value == "") {
+        alert("Favor de llenar los campos.");
+    } else {
+        document.getElementById("formCategoriaM").submit();
     }
 }
