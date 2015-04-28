@@ -77,6 +77,17 @@ public class ServerPanel extends HttpServlet {
             }
             out.println(respuesta);
         }
+        else if(op.equals("agregarTema")) {
+            String tema = request.getParameter("value");
+            DBHandler.agregarTema(tema);
+            out.println(respuesta);
+        }
+        else if(op.equals("agregarCategoria")) {
+            String categoria = request.getParameter("value");
+            String tema = request.getParameter("tema");
+            DBHandler.agregarCategoria(tema, categoria);
+            out.println(respuesta);
+        }
 //        processRequest(request, response);
     }
 

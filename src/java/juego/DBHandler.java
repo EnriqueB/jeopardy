@@ -177,5 +177,26 @@ public class DBHandler {
         }
         return categorias;
     }
-
+    
+    public static void agregarTema(String tema) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO temas (tema) VALUES ('"+tema+"')");
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     public static void agregarCategoria(String tema, String categoria) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO categorias (tema, categoria) VALUES ('"+tema+"', '"+categoria+"')");
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

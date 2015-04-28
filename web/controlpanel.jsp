@@ -11,12 +11,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Jeopardy!</title>
         <style>
-            #materia {
+            #selectMateria, #selectCategoria, #selectPista {
                 width:222px;
             }
             table {
                 float:left;
                 width:20%;
+            }
+            #popupTema, #popupCategoria {
+                display:none;
             }
         </style>
     </head>
@@ -31,7 +34,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <td><h3>Materias</h3></td>
+                        <td><h3>Temas</h3></td>
                     </tr>
                     <tr>
                         <td>Buscar:<input type="text" name="materia"/></td>
@@ -43,10 +46,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" onclick="">Borrar materia</button></td>
+                        <td><button type="button" onclick="agregarTemaShow()">Agregar materia</button></td>
                     </tr>
                 </tbody>
             </table>            
@@ -65,7 +65,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td><button type="button" onclick="agregarCategoriaShow()">Agregar categoria</button></td>
                     </tr>
                     <tr>
                         <td><button type="button" onclick="">Borrar categoria</button></td>
@@ -95,45 +95,30 @@
                 </tbody>
             </table>            
         </div>
-        <script>
-            function mostrarTemas() {
-                xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange=function() {
-                    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                        document.getElementById("selectMateria").innerHTML=xmlhttp.responseText;
-                    }
-                }
-                xmlhttp.open("GET", "ServerPanel?op=temas", true);
-                xmlhttp.send();
-            }
-            function mostrarCategorias(){
-                var value = document.getElementById("selectMateria");
-                var selectedValue = value.options[value.selectedIndex].text;
-                xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange=function() {
-                    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                        document.getElementById("selectCategoria").innerHTML=xmlhttp.responseText;
-                    }
-                }
-                xmlhttp.open("GET", "ServerPanel?op=categoria&value="+selectedValue, true);
-                xmlhttp.send();
-            }
-            function mostrarPistas() {
-                alert("hola");
-                var value = document.getElementById("selectCategoria");
-                var selectedValue = value.options[value.selectedIndex].text;
-                var tema = document.getElementById("selectMateria");
-                var selectedTema = tema.options[tema.selectedIndex].text;
-                xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange=function() {
-                    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                        alert(xmlhttp.responseText);
-                        document.getElementById("selectPista").innerHTML=xmlhttp.responseText;
-                    }
-                }
-                xmlhttp.open("GET", "ServerPanel?op=pistas&value="+selectedValue+"&tema="+selectedTema, true);
-                xmlhttp.send();
-            }
+        <!-- Popup Div para agregar Temas -->
+        <div id="popupTema">
+            <form action="javascript:agregarTema()" id="formTema" method="post" name="form">
+                <h2>Agregar Tema</h2>
+                <input id="tema" name="Tema" placeholder="Tema" type="text">
+                <br/>
+                <a href="javascript:validarTema()" id="submit">Agregar</a>
+                <a href="javascript:agregarTemaHide()" id="cancel">Cancelar</a>
+            </form>
+        </div>
+        <!-- Popup Div temas termina -->
+        <!-- Popup Div para agregar Categorias -->
+        <div id="popupCategoria">
+            <form action="javascript:agregarCategoria()" id="formCategoria" method="post" name="form">
+                <h2>Agregar Categoria</h2>
+                <input id="categoria" name="categoria" placeholder="Categoria" type="text">
+                <br/>
+                <a href="javascript:validarCategoria()" id="submit">Agregar</a>
+                <a href="javascript:agregarCategoriaHide()" id="cancel">Cancelar</a>
+            </form>
+        </div>
+        <!-- Popup Div temas termina -->
+        
+        <script src="javascript/controlpaneljs.js">
         </script>
     </body>
 </html>
