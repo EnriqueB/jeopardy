@@ -130,7 +130,7 @@ public class DBHandler {
         ArrayList temas = new ArrayList();
         try {
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT DISTINCT tema FROM preguntas");
+            ResultSet results = statement.executeQuery("SELECT DISTINCT tema FROM temas");
             while(results.next()){
                 String tema = results.getString(1);
                 temas.add(tema);
@@ -147,7 +147,7 @@ public class DBHandler {
         ArrayList categorias = new ArrayList();
         try {
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT DISTINCT categoria FROM preguntas WHERE tema = '"+tema+"'");
+            ResultSet results = statement.executeQuery("SELECT DISTINCT categoria FROM categorias WHERE tema = '"+tema+"'");
             while(results.next()){
                 String categoria = results.getString(1);
                 categorias.add(categoria);
@@ -161,11 +161,11 @@ public class DBHandler {
     }
     
     
-    public static ArrayList getPistas(String categoria) {
+    public static ArrayList getPistas(String categoria, String tema) {
         ArrayList categorias = new ArrayList();
         try {
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT DISTINCT pista FROM preguntas WHERE categoria = '"+categoria+"'");
+            ResultSet results = statement.executeQuery("SELECT DISTINCT pista FROM preguntas WHERE categoria = '"+categoria+"' AND tema='"+tema+"'");
             while(results.next()){
                 String pista = results.getString(1);
                 categorias.add(pista);

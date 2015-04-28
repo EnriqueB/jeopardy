@@ -119,15 +119,19 @@
                 xmlhttp.send();
             }
             function mostrarPistas() {
+                alert("hola");
                 var value = document.getElementById("selectCategoria");
                 var selectedValue = value.options[value.selectedIndex].text;
+                var tema = document.getElementById("selectMateria");
+                var selectedTema = tema.options[tema.selectedIndex].text;
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange=function() {
                     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                        alert(xmlhttp.responseText);
                         document.getElementById("selectPista").innerHTML=xmlhttp.responseText;
                     }
                 }
-                xmlhttp.open("GET", "ServerPanel?op=pistas&value="+selectedValue, true);
+                xmlhttp.open("GET", "ServerPanel?op=pistas&value="+selectedValue+"&tema="+selectedTema, true);
                 xmlhttp.send();
             }
         </script>

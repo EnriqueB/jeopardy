@@ -70,7 +70,8 @@ public class ServerPanel extends HttpServlet {
         }
         else if(op.equals("pistas")) {
             String categoria = request.getParameter("value");
-            ArrayList pistas = DBHandler.getPistas(categoria);
+            String tema = request.getParameter("tema");
+            ArrayList pistas = DBHandler.getPistas(categoria, tema);
             for(int i=0; i<pistas.size(); i++) {
                 respuesta+="<option value='"+pistas.get(i)+"'>"+pistas.get(i)+"</option>";
             }
