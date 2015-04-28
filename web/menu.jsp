@@ -17,7 +17,7 @@
                 response.sendRedirect("login.jsp");
             }
         %>
-        <h1>Hello World!</h1>
+        <h1>Menu!</h1>
         <ul>
             <li><a href ="Server?operacion=Jugar">Jugar</a></li>
             <li><a href ="Server?operacion=Agregar">Agregar Jugadores</a></li>
