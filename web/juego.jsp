@@ -14,13 +14,22 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <% ArrayList lista = (ArrayList)session.getAttribute("jugadores");
-               for(int i=0; i<lista.size(); ++i){ 
-               Jugador jug = (Jugador)lista.get(i);%>
-               <%=jug.getNombre()%>, <%=jug.getPuntuacion()%>
-               <br>
-            <%}
-            %>
+        <% String user = (String) session.getAttribute("usuario");
+            if (user == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %>
+        <h1>Jeopardy!</h1>
+        <br>
+        <% String mensaje = (String)request.getAttribute("resultado");
+           if(mensaje!=null){
+        %>
+        <%= mensaje %>
+        <%}%>
+        <br>
+        <%  ArrayList jugadores = (ArrayList)session.getAttribute("jugadores");
+            int turno = (int)session.getAttribute("turno")%(int)session.getAttribute("cantidad");
+           %>
+        <h3>Ahora es el turno de: <%=((Jugador)jugadores.get(turno)).getNombre()%></h3>
     </body>
 </html>

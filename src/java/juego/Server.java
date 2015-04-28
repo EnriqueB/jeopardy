@@ -130,7 +130,28 @@ public class Server extends HttpServlet {
                 }
                 session.setAttribute("jugadores", jugadores);
                 session.setAttribute("cantidad", cantJugadores);
+                session.setAttribute("turno", 0);
                 url="/elegirTemas.jsp";
+            }
+        }
+        else if(op.equals("revisarRespuesta")){
+            String respUsuario = request.getParameter("resp");
+            String respCorrecta = request.getParameter("respCorrecta");
+            if(respUsuario.equalsIgnoreCase(respCorrecta)){
+                //El usuario respondio de manera correcta
+                //Actualizar puntaje
+                ArrayList jugadores = (ArrayList)session.getAttribute("jugadores");
+                int turno = (int)session.getAttribute("turno")%(int)session.getAttribute("cantidad");
+                ((Jugador)jugadores.get(turno)).setPuntuacion(((Jugador)jugadores.get(turno)).getPuntuacion()+Integer.parseInt(request.getParameter("valor")));
+                session.setAttribute("turno", (int)session.getAttribute("turno")+1);
+                request.setAttribute("resultado", "Felicidades! La respuesta es correcta");
+                url="/juego.jsp";
+            }
+            else{
+                session.setAttribute("turno", (int)session.getAttribute("turno")+1);
+                request.setAttribute("resultado", "Lo siento, la respuesta es incorrecta");
+                url="/juego.jsp";
+                
             }
         }
         else if(op.equals("logout")) {
