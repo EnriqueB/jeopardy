@@ -98,7 +98,7 @@
                     </tr>
                 </tbody>
             </table> 
-            <table>
+            <table border="1">
                 <tbody id="detallePistas">
                 </tbody>
             </table>
