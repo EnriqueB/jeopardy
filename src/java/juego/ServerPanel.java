@@ -73,7 +73,8 @@ public class ServerPanel extends HttpServlet {
             String tema = request.getParameter("tema");
             ArrayList pistas = DBHandler.getPistas(categoria, tema);
             for(int i=0; i<pistas.size(); i++) {
-                respuesta+="<option value='"+pistas.get(i)+"'>"+pistas.get(i)+"</option>";
+                Pregunta preg = (Pregunta)pistas.get(i);
+                respuesta+="<option value='"+preg.getPista()+"'>"+preg.getPista()+"</option>";
             }
             out.println(respuesta);
         }
@@ -86,6 +87,37 @@ public class ServerPanel extends HttpServlet {
             String categoria = request.getParameter("value");
             String tema = request.getParameter("tema");
             DBHandler.agregarCategoria(tema, categoria);
+            out.println(respuesta);
+        } else if(op.equals("detalle")) {
+            String categoria = request.getParameter("value");
+            String tema = request.getParameter("tema");
+            String pista = request.getParameter("pista");
+            ArrayList pistas = DBHandler.getPista(categoria, tema, pista);
+            respuesta+="<tr>";
+            for(int i=0; i<pistas.size(); i++) {
+                Pregunta preg = (Pregunta)pistas.get(i);
+                respuesta+="<td><strong>Tema</strong>: "+preg.getTema()+"<td></tr><tr>";
+                respuesta+="<td><strong>Categoria</strong>: "+preg.getCategoria()+"<td></tr><tr>";
+                respuesta+="<td><strong>Pista</strong>: "+preg.getPista()+"<td></tr><tr>";
+                respuesta+="<td><strong>Respuesta</strong>: "+preg.getRespuesta()+"<td></tr><tr>";
+                respuesta+="<td><strong>Puntuacion</strong>: "+preg.getValor()+"<td></tr>";
+            }
+            out.println(respuesta);
+        } else if(op.equals("agregarPista")) {
+            String categoria = request.getParameter("categoria");
+            String tema = request.getParameter("tema");
+            String pista = request.getParameter("pista");
+            String respuestas = request.getParameter("respuesta");
+            String puntuacion = request.getParameter("puntuacion");
+            DBHandler.agregarPista(tema, categoria, pista, respuestas, puntuacion);
+            out.println(respuesta);
+        } else if(op.equals("borrarPista")) {
+            String value = request.getParameter("value");
+            DBHandler.borrarPista(value);
+            out.println(respuesta);
+        } else if(op.equals("borrarCategoria")) {
+            String value = request.getParameter("value");
+            DBHandler.borrarCategoria(value);
             out.println(respuesta);
         }
 //        processRequest(request, response);

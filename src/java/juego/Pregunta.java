@@ -10,15 +10,16 @@ package juego;
  * @author Enrique
  */
 public class Pregunta {
-    String pista, categoria, respuesta;
+    String pista, categoria, respuesta, tema;
     int valor;
 
     public Pregunta() {
     }
 
-    public Pregunta(String pista, String categoria, String respuesta, int valor) {
+    public Pregunta(String pista, String categoria, String tema, String respuesta, int valor) {
         this.pista = pista;
         this.categoria = categoria;
+        this.tema = tema;
         this.respuesta = respuesta;
         this.valor = valor;
     }
@@ -38,7 +39,15 @@ public class Pregunta {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+    
+    public String getTema() {
+        return tema;
+    }
 
+    public void setTema(String tema) {
+        this.tema = tema;
+    }
+    
     public String getRespuesta() {
         return respuesta;
     }

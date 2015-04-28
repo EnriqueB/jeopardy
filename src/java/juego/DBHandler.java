@@ -162,20 +162,47 @@ public class DBHandler {
     
     
     public static ArrayList getPistas(String categoria, String tema) {
-        ArrayList categorias = new ArrayList();
+        ArrayList pistas = new ArrayList();
         try {
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT DISTINCT pista FROM preguntas WHERE categoria = '"+categoria+"' AND tema='"+tema+"'");
+            ResultSet results = statement.executeQuery("SELECT tema, categoria, pista, respuesta, puntuacion FROM preguntas WHERE categoria = '"+categoria+"' AND tema='"+tema+"'");
             while(results.next()){
-                String pista = results.getString(1);
-                categorias.add(pista);
+                String temas = results.getString(1);
+                String categorias = results.getString(2);
+                String pista = results.getString(3);
+                String respuesta = results.getString(4);
+                int puntuacion = results.getInt(5);
+                Pregunta preg = new Pregunta(pista, categorias, temas, respuesta, puntuacion);
+                pistas.add(preg);
             }
             statement.close();
         }
         catch (SQLException ex){
             Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return categorias;
+        return pistas;
+    }
+    
+    public static ArrayList getPista(String categoria, String tema, String pista) {
+        ArrayList pregs = new ArrayList();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT tema, categoria, pista, respuesta, puntuacion FROM preguntas WHERE categoria = '"+categoria+"' AND tema='"+tema+"' AND pista='"+pista+"'");
+            while(results.next()){
+                String temas = results.getString(1);
+                String categorias = results.getString(2);
+                String pistas = results.getString(3);
+                String respuesta = results.getString(4);
+                int puntuacion = results.getInt(5);
+                Pregunta preg = new Pregunta(pistas, categorias, temas, respuesta, puntuacion);
+                pregs.add(preg);
+            }
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pregs;
     }
     
     public static void agregarTema(String tema) {
@@ -193,6 +220,40 @@ public class DBHandler {
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO categorias (tema, categoria) VALUES ('"+tema+"', '"+categoria+"')");
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     public static void agregarPista(String tema, String categoria, String pista, String respuesta, String puntuacion) {
+        try {
+            Statement statement = connection.createStatement();
+            int valor = Integer.parseInt(puntuacion);
+            statement.executeUpdate("INSERT INTO preguntas (tema, categoria, pista, respuesta, puntuacion) VALUES ('"+tema+"', '"+categoria+"', '"+pista+"', '"+respuesta+"', "+valor+")");
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void borrarPista(String pista) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM preguntas WHERE pista='"+pista+"'");
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void borrarCategoria(String categoria) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("DELETE FROM preguntas WHERE categoria='"+categoria+"'");
+            statement.executeUpdate("DELETE FROM categorias WHERE categoria='"+categoria+"'");
             statement.close();
         }
         catch (SQLException ex){
