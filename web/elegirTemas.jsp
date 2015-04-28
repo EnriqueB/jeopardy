@@ -27,7 +27,7 @@
             }
         %>
         <h1>Elegir Tema!</h1>
-        <form action="Server" id="listaPistas" method="POST">
+        <form action="Server?operacion=elegirCategorias" id="listaPistas" method="GET">
             <input type="submit" value ="Jugar!">
         </form>
         <div class="container">
