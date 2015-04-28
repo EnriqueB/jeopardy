@@ -46,6 +46,47 @@ INSERT INTO `preguntas` (`id`, `tema`, `categoria`, `pista`, `respuesta`, `puntu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `temas`
+--
+
+CREATE TABLE IF NOT EXISTS `temas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tema` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `preguntas`
+--
+
+INSERT INTO `temas` (`id`, `tema`) VALUES
+(1, 'Fisica'),
+(2, 'Geografia');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `preguntas`
+--
+
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tema` varchar(30) NOT NULL,
+  `categoria` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `preguntas`
+--
+
+INSERT INTO `preguntas` (`id`, `tema`, `categoria`) VALUES
+(1, 'Fisica', 'Magnetismo'),
+(2, 'Geografia', 'Montañas');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `usuarios`
 --
 
