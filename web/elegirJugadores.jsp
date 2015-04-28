@@ -33,7 +33,7 @@
             <% ArrayList lista = (ArrayList)session.getAttribute("jugadoresLista");
                for(int i=0; i<lista.size(); ++i){ 
                Jugador jug = (Jugador)lista.get(i);%>
-               <option>Jugador: <%=jug.getNombre()%>, Puntuacion: <%=jug.getPuntuacion()%></option>  
+               <option><%=jug.getNombre()%></option>  
                <%}
             %>
             </select>
@@ -57,7 +57,7 @@
             <% 
                for(int i=0; i<lista.size(); ++i){ 
                Jugador jug = (Jugador)lista.get(i);%>
-               <option>Jugador: <%=jug.getNombre()%>, Puntuacion: <%=jug.getPuntuacion()%></option>  
+               <option><%=jug.getNombre()%></option>  
                <%}
             %>
             </select>
@@ -69,7 +69,7 @@
             <% 
                for(int i=0; i<lista.size(); ++i){ 
                Jugador jug = (Jugador)lista.get(i);%>
-               <option>Jugador: <%=jug.getNombre()%>, Puntuacion: <%=jug.getPuntuacion()%></option>  
+               <option><%=jug.getNombre()%></option>  
                <%}
             %>
             </select>
