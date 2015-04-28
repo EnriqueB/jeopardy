@@ -154,6 +154,10 @@ public class Server extends HttpServlet {
                 
             }
         }
+        else if(op.equals("Terminar")){
+            //juego termino
+            url="/terminar.jsp";
+        }
         else if(op.equals("logout")) {
             session.invalidate(); 
             url="/login.jsp";
