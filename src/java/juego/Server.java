@@ -90,9 +90,15 @@ public class Server extends HttpServlet {
                 url="/menu.jsp";
             }
         }
+        else if(op.equals("jugar")){
+            url="/elegirJugadores";
+            ArrayList jugadores = DBHandler.listaJugadores();
+            session.setAttribute("jugadoresLista", jugadores);
+        }
         else if(op.equals("logout")) {
             session.invalidate(); 
             url="/login.jsp";
+            
         }
         ServletContext sc = this.getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(url);
