@@ -226,11 +226,22 @@ public class DBHandler {
             Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public static void editarPista(String pista, String respuesta, String puntuacion) {
+    public static void editarPista(String pista, String respuesta, String puntuacion) {
         try {
             Statement statement = connection.createStatement();
             int valor = Integer.parseInt(puntuacion);
-            statement.executeUpdate("UPDATE preguntas SET respuesta='"+respuesta+"', puntuacion="+valor+" WHERE pista='"+pista+"");
+            statement.executeUpdate("UPDATE preguntas SET respuesta='"+respuesta+"', puntuacion="+valor+" WHERE pista='"+pista+"'");
+            statement.close();
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public static void editarCategoria(String value, String categoria) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE categorias SET categoria='"+categoria+"' WHERE categoria='"+value+"'");
+            statement.executeUpdate("UPDATE preguntas SET categoria='"+categoria+"' WHERE categoria='"+value+"'");
             statement.close();
         }
         catch (SQLException ex){
