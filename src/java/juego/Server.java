@@ -7,6 +7,7 @@ package juego;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -72,6 +73,22 @@ public class Server extends HttpServlet {
                 DBHandler.cambio((String)session.getAttribute("usuario"), passNueva);
                 url="/menu.jsp";
                 request.setAttribute("error", ""); 
+            }
+        }
+        else if(op.equals("Agregar")){
+            //Obtener lista de jugadores en la base de datos
+            ArrayList jugadores = DBHandler.listaJugadores();
+            session.setAttribute("jugadoresLista", jugadores);
+            url="/agregarJugadores.jsp";
+        }
+        else if(op.equals("agregarJugador")){
+            String nombre = request.getParameter("jugador");
+            if(nombre.equals("")){
+                url="/menu.jsp";
+            }
+            else{
+                DBHandler.agregaJugador(nombre);
+                url="/menu.jsp";
             }
         }
         else if(op.equals("logout")) {

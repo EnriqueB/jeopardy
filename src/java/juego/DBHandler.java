@@ -95,5 +95,35 @@ public class DBHandler {
             Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static ArrayList listaJugadores(){
+        ArrayList list = new ArrayList();
+        try {            
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT id, nombre, puntuacion FROM jugadores");
+            while (results.next()) {
+                int id = results.getInt(1);
+                String nombre=results.getString(2);
+                int puntuacion =results.getInt(3);
+                Jugador jugador = new Jugador(nombre, id, puntuacion);
+                list.add(jugador);
+            }
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    public static void agregaJugador(String nombre){
+        try{
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO jugadores (nombre, puntuacion) VALUES ('"+nombre+"', 0)");
+        }
+        catch (SQLException ex){
+            Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }
