@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <select name="materia" size="3" id="materia">
+                            <select name="materia" size="3" id="selectMateria" onchange="mostrarCategorias()">
                             </select>
                         </td>
                     </tr>
@@ -60,12 +60,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <select name="materia" size="3" id="categoria">
-                                <option>Física</option>
-                                <option>Geografía</option>
-                                <option>Historia</option>
-                                <option>Matemáticas</option>
-                                <option>Redes</option>
+                            <select name="categoria" size="3" id="selectCategoria" onchange="mostrarPistas()">                               
                             </select>
                         </td>
                     </tr>
@@ -87,12 +82,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <select name="materia" size="3" id="pistas">
-                                <option>Física</option>
-                                <option>Geografía</option>
-                                <option>Historia</option>
-                                <option>Matemáticas</option>
-                                <option>Redes</option>
+                            <select name="pistas" size="3" id="selectPista">                              
                             </select>
                         </td>
                     </tr>
@@ -110,25 +100,38 @@
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange=function() {
                     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                        document.getElementById("materia").innerHTML=xmlhttp.responseText;
+                        document.getElementById("selectMateria").innerHTML=xmlhttp.responseText;
                     }
                 }
                 xmlhttp.open("GET", "ServerPanel?op=temas", true);
                 xmlhttp.send();
             }
-//            $(document).ready(function() {
-//                $('#materia').on("click","change", function(){
-//                    var value = $("#selectFecha option:selected").text();
-//                    xmlhttp = new XMLHttpRequest();
-//                    xmlhttp.onreadystatechange=function() {
-//                        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-//                            document.getElementById("materia").innerHTML=xmlhttp.responseText;
-//                        }
-//                    }
-//                    xmlhttp.open("POST", "ServerPanel?op=materia&value="+value, true);
-//                    xmlhttp.send();
-//                });
-//            });
+            function mostrarCategorias(){
+                var value = document.getElementById("selectMateria");
+                var selectedValue = value.options[value.selectedIndex].text;
+                xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function() {
+                    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                        alert(xmlhttp.responseText);
+                        document.getElementById("selectCategoria").innerHTML=xmlhttp.responseText;
+                    }
+                }
+                xmlhttp.open("GET", "ServerPanel?op=categoria&value="+selectedValue, true);
+                xmlhttp.send();
+            }
+            function mostrarPistas() {
+                var value = document.getElementById("selectCategoria");
+                var selectedValue = value.options[value.selectedIndex].text;
+                xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange=function() {
+                    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                        alert(xmlhttp.responseText);
+                        document.getElementById("selectPista").innerHTML=xmlhttp.responseText;
+                    }
+                }
+                xmlhttp.open("GET", "ServerPanel?op=pistas&value="+selectedValue, true);
+                xmlhttp.send();
+            }
         </script>
     </body>
 </html>
